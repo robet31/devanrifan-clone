@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-body: "Be Vietnam Pro", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --color-accent: #F7FD92;
+  --color-ink: #000000;
+  --color-coal: #1A1D21;
+  --color-mist: #F6F6F6;
+  --color-peach: #FFBC7D;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); color: #000; background: #fff; font-size: 13px; line-height: 1.5; overflow-x: hidden; }
+h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
+
+.btn-pill { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: #fff; color: #000; border: 2px solid #000; border-radius: 999px; padding: 8px 22px; display: inline-flex; align-items: center; gap: 8px; transition: background .25s, color .25s, transform .25s; }
+.btn-pill:hover { background: #000; color: #fff; }
+.btn-pill.dark { background: #000; color: #fff; }
+.btn-pill.dark:hover { background: #fff; color: #000; }
+
+.highlight-grow { position: relative; }
+.highlight-grow::after { content: ""; position: absolute; left: 0; bottom: 0; height: .28em; width: 100%; background: var(--color-accent); z-index: -1; transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.in-view .highlight-grow::after, .highlight-grow.on::after { transform: scaleX(1); }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+.lqd-cc-dot, .lqd-cc-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 999px; }
+.lqd-cc-dot { width: 8px; height: 8px; background: #fff; mix-blend-mode: difference; }
+.lqd-cc-ring { width: 36px; height: 36px; border: 1.5px solid #fff; mix-blend-mode: difference; display: flex; align-items: center; justify-content: center; transition: width .25s, height .25s, background .25s; }
+.lqd-cc-ring.big { width: 96px; height: 96px; background: rgba(255,255,255,1); mix-blend-mode: normal; border-color: transparent; }
+.lqd-cc-ring.big span { color: #000; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+@media (max-width: 768px) { .lqd-cc-dot, .lqd-cc-ring { display: none; } }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+#root { animation: pageIn .7s ease both; }
+@keyframes headerDrop { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+@keyframes tabIn { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+.send-tab { animation: tabIn 1s cubic-bezier(.2,.7,.2,1) .8s both; transition: letter-spacing .3s, opacity .3s, color .3s; }
+.send-tab:hover { letter-spacing: 2px; }
+.site-header { animation: headerDrop .9s cubic-bezier(.2,.7,.2,1) .1s both; }
+
+.nav-link { position: relative; padding: 4px 0; transition: opacity .2s; }
+.nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: #000; transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+.nav-link:hover::after { transform: scaleX(1); }
+.nav-link:hover { opacity: .75; }
+
+.modal-bg { opacity: 0; transition: opacity .45s ease; }
+.modal-open .modal-bg { opacity: 1; }
+.modal-item { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.2,.7,.2,1), transform .65s cubic-bezier(.2,.7,.2,1); }
+.modal-open .modal-item { opacity: 1; transform: none; }
+.drawer-nav:hover .drawer-link:not(:hover) { opacity: .22; }
+.drawer-link:hover { opacity: 1; }
+@keyframes drawerIn { from { opacity: 0; transform: translateX(2rem); } to { opacity: 1; transform: none; } }
+.drawer-nav.open .drawer-link { animation: drawerIn .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(150ms + var(--i) * 70ms); }
